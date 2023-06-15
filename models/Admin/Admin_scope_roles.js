@@ -17,6 +17,8 @@ const Admin_Roles_Schema = new mongoose.Schema({
     administrator_scopes:      					[{type:String}],
     roles_scopes:                               [{type:String}],
     manufacturer_request_scopes:      			[{type:String}],
+    support_questions_scopes:                   [{type:String}],
+    request_demo_scopes:                        [{type:String}],
 	//date
 	createdAt:		{ type: Date,default: Date.now},
 },{timestamps:true})

@@ -121,10 +121,18 @@ const get_career_mailing_list = require("./routes/Support/get_carrer_mailing_lis
 const get_feedbacks = require("./routes/Support/get_feedbacks.js");
 const get_support_questions = require("./routes/Support/get_support_questions.js");
 const get_langing_page_mailing_list = require("./routes/Support/get_landing_page_mailing_list.js");
+const mark_support_as_solved = require('./routes/Support/mark_support_as_solved.js');
+const un_mark_support_as_solved = require('./routes/Support/unmark_support_as_solved.js');
+const delete_support_question = require('./routes/Support/delete_support_question.js');
+const get_request_demo_tickets = require('./routes/Support/Request_Demo_Tickets/get_tickets.js')
+const mark_request_demo_ticket_as_solved = require('./routes/Support/Request_Demo_Tickets/mark_ticket_as_solved.js')
+const un_mark_request_demo_ticket_as_solved = require('./routes/Support/Request_Demo_Tickets/unmark_ticket_as_solved.js')
+const delete_ticket = require('./routes/Support/Request_Demo_Tickets/delete_ticket.js')
 
 /*-----Request-----*/
 const get_requests = require("./routes/Accounts/Admin/manufacturers/get_requests");
 const complete_requests = require("./routes/Accounts/Admin/manufacturers/complete_request");
+const delete_request = require("./routes/Accounts/Admin/manufacturers/delete_request");
 //routes
 
 // /*--account---*/
@@ -221,9 +229,19 @@ app.use("/api/get_subscription_plans",get_subscription_plans);
 
 /*----support----*/
 app.use("/api/get_career_mailing_list",get_career_mailing_list);
-app.use("/api/get_feedbacks",get_feedbacks);
-app.use("/api/get_support_questions",get_support_questions);
 app.use("/api/get_mailing_list",get_langing_page_mailing_list);
+//feedbacks
+app.use("/api/get_feedbacks",get_feedbacks);//done
+//support questions
+app.use("/api/get_support_questions",get_support_questions);//done
+app.use("/api/mark_support_as_solved",mark_support_as_solved);//done
+app.use("/api/un_mark_support_as_solved",un_mark_support_as_solved);//done
+app.use("/api/delete_support_question",delete_support_question);//done
+//request demo tickets
+app.use("/api/get_request_demo_tickets",get_request_demo_tickets);//done
+app.use("/api/mark_request_demo_ticket_as_solved",mark_request_demo_ticket_as_solved);//done
+app.use("/api/un_mark_request_demo_ticket_as_solved",un_mark_request_demo_ticket_as_solved);//done
+app.use("/api/delete_ticket",delete_ticket);//done
 
 /*-----orders-----*/
 app.use("/api/get_orders",get_orders);//done
@@ -235,6 +253,7 @@ app.use("/api/delete_order",delete_order);//done
 
 app.use("/api/get_requests",get_requests);
 app.use("/api/complete_requests",complete_requests);
+app.use("/api/delete_request",delete_request);
 
 app.get('/',(req,res)=>{
 	res.send("<html> <head>server Response</head><body><h1> This page was render directly from the server <p>Hello there welcome to Prokemia</p></h1></body></html>")

@@ -45,6 +45,8 @@ router.post('/',async (req,res,next)=>{
                     administrator_scopes:      					payload.administrator_scopes,
                     roles_scopes:                               payload.roles_management_scopes,
                     manufacturer_request_scopes:      			payload.requests_scopes,
+                    support_questions_scopes:                   payload.support_questions_scopes,
+                    request_demo_scopes:                        payload.request_demo_scopes
                 })
                 ////console.log(new_Admin)
                 return res.status(200).send(`successfully created ${new_Role?.title}.`)

@@ -2,24 +2,31 @@
 const express = require('express');
 //models import
 const Requests = require("../../../../models/Manufacturer/Manufacturer_Request.js");
+const Role_Verifier = require("../../../../controllers/role_verifier.js");
 
 let router = express.Router()
 
 router.post('/',async(req,res)=>{
-    const payload = req.body; //get payload
+	const payload = req.body; //get payload
     
     //check if payload is available
     if(!payload){
         return  res.status(401).send('Bad Request'); 
     }
-    const id = payload._id //get the Request id
 
-	const existing_Request = await Requests.findOne({_id:id}) //checks if a request already exists
-
-    //console.log(existing_Request)
-
-	if (existing_Request != null)
+    //check if an admin user is authorised
+	const verify_role_payload = {
+		task:'requests',
+		sub_task: 'approve',
+		role: payload.auth_role
+	}
+	const verified_result = await Role_Verifier(verify_role_payload);
+	//console.log(verified_result)
+	if (!verified_result){
+		return res.status(401).send("You are not authorized to complete this request, kindly contact the administrator or support for any issues");
+	}else{
 		try{
+			const id = payload._id //use id to find existing request
 			const query = {_id:id};
 	        const update = { $set: {
 	            complete_request:   true,
@@ -33,8 +40,6 @@ router.post('/',async(req,res)=>{
 			console.log(err)
 			return res.status(500).send("could not complete_request at the moment");
 		}
-	else{
-		return res.status(500).send("could not find this request, it may have been deleted or it doesnt exist");
 	}
 })
 
