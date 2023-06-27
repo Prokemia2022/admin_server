@@ -6,8 +6,12 @@ db.connect()
 const app = express()
 app.use(express.json())
 
-let origins = ['https://prokemia-admin-web.vercel.app','https://prokemia-admin-web-musembi77.vercel.app','http://localhost:3000','http://admin.prokemia.com/','https://admin.prokemia.com/'];
-app.use(cors({credentials:true, origin: "*"}));
+let origins = ['https://prokemia-admin-web.vercel.app',
+				'https://prokemia-admin-web-musembi77.vercel.app',
+				'http://localhost:3000',
+				'https://admin-frontend-pi.vercel.app',
+				'https://admin.prokemia.com/'];
+app.use(cors({credentials:true, origin: '*'}));
 //imports
 
 /*--accounts---*/
@@ -18,6 +22,9 @@ const get_client_account = require("./routes/Accounts/Admin/clients/get_client.j
 const get_client_accounts = require("./routes/Accounts/Admin/clients/get_clients.js");
 const suspend_client_account = require("./routes/Accounts/Admin/clients/suspend_client_account.js");
 const un_suspend_client_account = require("./routes/Accounts/Admin/clients/un_suspend_client_account.js");
+const delete_client_account = require("./routes/Accounts/Admin/clients/delete_client.js");
+const verify_client_email = require("./routes/Accounts/Admin/clients/verify_client_email.js")
+const un_verify_client_email = require("./routes/Accounts/Admin/clients/un_verify_client_email.js")
 // const get_product = require("./routes/Accounts/client_account/get_products.js");
 
 //distributor
@@ -30,6 +37,8 @@ const un_suspend_distributor_account = require("./routes/Accounts/Admin/distribu
 const subscribe_distributor_account = require("./routes/Accounts/Admin/distributors/subscribe_distributor_account.js");
 const un_subscribe_distributor_account = require("./routes/Accounts/Admin/distributors/un_subscribe_distributor_account.js");
 const delete_distributor_account = require("./routes/Accounts/Admin/distributors/delete_distributor.js");
+const verify_distributor_email = require("./routes/Accounts/Admin/distributors/verify_distributor_email.js")
+const un_verify_distributor_email = require("./routes/Accounts/Admin/distributors/un_verify_distributor_email.js")
 
 //manufacturer
 const approve_manufacturer_account = require("./routes/Accounts/Admin/manufacturers/approve_manufacturer.js");
@@ -41,6 +50,8 @@ const decline_manufacturer_account = require("./routes/Accounts/Admin/manufactur
 const subscribe_manufacturer_account = require("./routes/Accounts/Admin/manufacturers/subscribe_manufacturer_account.js");
 const un_subscribe_manufacturer_account = require("./routes/Accounts/Admin/manufacturers/un_subscribe_manufacturer_account.js");
 const delete_manufacturer_account = require("./routes/Accounts/Admin/manufacturers/delete_manufacturer.js");
+const verify_manufacturer_email = require("./routes/Accounts/Admin/manufacturers/verify_manufacturer_email.js")
+const un_verify_manufacturer_email = require("./routes/Accounts/Admin/manufacturers/un_verify_manufacturer_email.js")
 
 //sales
 const approve_salesperson_account = require("./routes/Accounts/Admin/salespeople/approve_salesperson.js");
@@ -50,6 +61,8 @@ const suspend_salesperson_account = require("./routes/Accounts/Admin/salespeople
 const un_suspend_salesperson_account = require("./routes/Accounts/Admin/salespeople/un_suspend_salesperson_account");
 const decline_salesperson_account = require("./routes/Accounts/Admin/salespeople/decline_salesperson.js");
 const delete_salesperson_account = require("./routes/Accounts/Admin/salespeople/delete_salesperson.js");
+const verify_salesperson_email = require("./routes/Accounts/Admin/salespeople/verify_saleperson_email.js")
+const un_verify_salesperson_email = require("./routes/Accounts/Admin/salespeople/un_verify_salesperson_email.js")
 
 //admin
 const add_admin_user = require("./routes/Accounts/Admin/admin_user/add_admin_user.js");
@@ -154,6 +167,9 @@ app.use("/api/get_client_account",get_client_account);//done
 app.use("/api/get_client_accounts",get_client_accounts);//done
 app.use("/api/suspend_client_account",suspend_client_account);//done
 app.use("/api/un_suspend_client_account",un_suspend_client_account);//done
+app.use("/api/delete_client_account",delete_client_account);//done
+app.use("/api/verify_client_email",verify_client_email);//done
+app.use("/api/un_verify_client_email",un_verify_client_email);//done
 //distributor
 app.use("/api/approve_distributor_account",approve_distributor_account);//done
 app.use("/api/get_distributor_account",get_distributor_account);//done
@@ -164,6 +180,8 @@ app.use("/api/un_suspend_distributor_account",un_suspend_distributor_account);//
 app.use("/api/subscribe_distributor_account",subscribe_distributor_account);//done
 app.use("/api/un_subscribe_distributor_account",un_subscribe_distributor_account);//done
 app.use("/api/delete_distributor_account",delete_distributor_account);//done
+app.use("/api/verify_distributor_email",verify_distributor_email);//done
+app.use("/api/un_verify_distributor_email",un_verify_distributor_email);//done
 
 //manufacturer
 app.use("/api/approve_manufacturer_account",approve_manufacturer_account);//done
@@ -175,6 +193,8 @@ app.use("/api/decline_manufacturer_account",decline_manufacturer_account);
 app.use("/api/subscribe_manufacturer_account",subscribe_manufacturer_account)//done
 app.use("/api/un_subscribe_manufacturer_account",un_subscribe_manufacturer_account);//done
 app.use("/api/delete_manufacturer_account",delete_manufacturer_account);//done
+app.use("/api/verify_manufacturer_email",verify_manufacturer_email);//done
+app.use("/api/un_verify_manufacturer_email",un_verify_manufacturer_email);//done
 
 //salesperson
 app.use("/api/approve_salesperson_account",approve_salesperson_account);//done
@@ -184,6 +204,8 @@ app.use("/api/suspend_salesperson_account",suspend_salesperson_account);//done
 app.use("/api/un_suspend_salesperson_account",un_suspend_salesperson_account);//done
 app.use("/api/decline_salesperson_account",decline_salesperson_account);//done
 app.use("/api/delete_salesperson_account",delete_salesperson_account);//done
+app.use("/api/verify_salesperson_email",verify_salesperson_email);//done
+app.use("/api/un_verify_salesperson_email",un_verify_salesperson_email);//done
 
 /*---control---*/
 app.use("/api/add_new_industry",add_new_industry);//done

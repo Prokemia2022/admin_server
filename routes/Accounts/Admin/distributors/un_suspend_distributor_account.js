@@ -42,7 +42,9 @@ router.post('/',async(req,res)=>{
 					const email_payload = {
 						email : existing_distributor.email_of_company
 					}
-					axios.post("https://prokemiaemailsmsserver-production.up.railway.app/api/reactivate_account_email",email_payload)
+					if (existing_distributor?.valid_email_status){
+						axios.post("https://prokemiaemailsmsserver-production.up.railway.app/api/reactivate_account_email",email_payload)
+					}
 					return res.status(200).send("success")
 				})	
 			}catch(err){
