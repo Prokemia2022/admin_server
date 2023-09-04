@@ -42,7 +42,10 @@ router.post("/",async (req,res)=>{
             const update = { $set: {
                 name_of_product: 					payload.name_of_product,
                 manufactured_by: 					payload.manufactured_by,
+                manufactured_by_id:					payload.manufactured_by_id,
                 distributed_by:						payload.distributed_by,
+                distributed_by_id:					payload.distributed_by_id,
+                listed_by_id:                       payload.listed_by_id,
                 description_of_product:				payload.description_of_product,
                 chemical_name:  					payload.chemical_name,
                 function:							payload.function,
@@ -57,6 +60,7 @@ router.post("/",async (req,res)=>{
                 industry: 							payload.industry,
                 technology: 						payload.technology,
                 short_on_expiry: 					payload.short_on_expiry,
+                short_on_expiry_date:				payload.short_on_expiry_date,
                 email_of_lister:                    payload.email_of_lister,
                 website_link_to_Seller: 			payload.website_link_to_Seller,
             }};

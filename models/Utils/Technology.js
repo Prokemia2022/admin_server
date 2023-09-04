@@ -6,7 +6,7 @@ const TechnologySchema = new mongoose.Schema({
 	description: 	{ type: String},
 	//verification_status
 	verification_status:		{ type: Boolean},
-	createdAt:		{ type: Date, default: Date.now}
+	publish_status:				{ type:Boolean},
 },{timestamps:true})
 
 module.exports = mongoose.model("technologies",TechnologySchema)

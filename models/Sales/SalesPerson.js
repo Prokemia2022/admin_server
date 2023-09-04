@@ -21,7 +21,7 @@ const SalesPersonSchema = new mongoose.Schema({
 								Item:String //category of search i.e industry, product , technology, manufacturer
 							},
 						],
-	//security - logins and authentications
+	//security - logins and authentications 
 	password:			{ type: String},
 	access_token: 		{ type: String},
 	//The hub community

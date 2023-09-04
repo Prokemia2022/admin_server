@@ -16,7 +16,7 @@ router.post('/',async(req,res)=>{
 
     try{
         const distributor = await Distributor.findOne({_id:id});
-        return res.status(200).send(distributor)
+        return res.status(200).send(distributor)        
     }catch(err){
         console.log(err);
         return res.status(500).send("Error while fetching distributor")

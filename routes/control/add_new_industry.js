@@ -31,7 +31,8 @@ router.post("/",async(req,res)=>{
 					title:						payload.title,
 					description: 				payload.description,
 					cover_image: 				payload.cover_image,
-					verification_status:			true, 
+					verification_status:		payload.verification_status,
+					publish_status:				payload.publish_status
 				})
 				return res.status(200).send("successfully added a new industry")
 			}catch(err){

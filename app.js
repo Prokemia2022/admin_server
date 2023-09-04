@@ -14,6 +14,8 @@ let origins = ['https://prokemia-admin-web.vercel.app',
 app.use(cors({credentials:true, origin: '*'}));
 //imports
 
+const notifications = require('./routes/control/notifications.js')
+app.use('/api/notifications',notifications);
 /*--accounts---*/
 const signin = require("./routes/Accounts/signin.js");
 //const signin = require("./routes/Accounts/signin.js");
@@ -122,6 +124,7 @@ const add_vacancy = require("./routes/vacancies/add_vacancy.js");
 const delete_vacancy = require("./routes/vacancies/delete_vacancy.js");
 const edit_vacancy = require("./routes/vacancies/edit_vacancy.js");
 const get_vacancies = require("./routes/vacancies/get_vacancies.js");
+const get_applications = require("./routes/vacancies/get_applications.js")
 
 /*---subcription_plan---*/
 const add_new_plan = require("./routes/subscription_plan/add_new_plan.js");
@@ -242,6 +245,7 @@ app.use("/api/add_vacancy",add_vacancy);
 app.use("/api/delete_vacancy",delete_vacancy);
 app.use("/api/edit_vacancy",edit_vacancy);
 app.use("/api/get_vacancies",get_vacancies);
+app.use("/api/get_applications",get_applications);
 
 /*---subcription_plan---*/
 app.use("/api/add_new_plan",add_new_plan);

@@ -36,6 +36,7 @@ const ManufacturerSchema = new mongoose.Schema({
 								mobile: String,
 								industry: String
 							}],
+	views:					{ type: Number},							
 	//subscription information
 	subscription: 			{ type: Boolean},
 	subscription_plan: 		{ type: String},

@@ -15,7 +15,7 @@ router.post('/',async(req,res)=>{
 
     try{
         const product = await Product.findOne({_id:id});
-        return res.status(200).send(product)
+        return res.status(200).send(product);
     }catch(err){
         console.log(err);
         return res.status(500).send("Error while fetching product")
