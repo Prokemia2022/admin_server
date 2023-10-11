@@ -4,6 +4,7 @@ const axios = require('axios')
 //models imports
 const Manufacturer = require('../../../../models/Manufacturer/Manufacturer.js');
 const Role_Verifier = require("../../../../controllers/role_verifier.js");
+const Send_Email = require("../../../../controllers/email_handler.js");
 
 const router = express.Router();
 
@@ -40,11 +41,18 @@ router.post('/',async(req,res)=>{
 				
 				await Manufacturer.updateOne( query, update, options).then((response)=>{
 					const email_payload = {
-						email : existing_manufacturer.email_of_company
+						email : existing_manufacturer?.email_of_company
 					}
+					let api = 'api/reactivate_account_email'
 					if (existing_manufacturer?.valid_email_status){
-						axios.post("https://prokemiaemailsmsserver-production.up.railway.app/api/reactivate_account_email",email_payload)
+						Send_Email(api,email_payload)
 					}
+					// const email_payload = {
+					// 	email : existing_manufacturer.email_of_company
+					// }
+					// if (existing_manufacturer?.valid_email_status){
+					// 	axios.post("https://prokemiaemailsmsserver-production.up.railway.app/api/reactivate_account_email",email_payload)
+					// }
 					return res.status(200).send("success")
 				})	
 			}catch(err){

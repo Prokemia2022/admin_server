@@ -3,6 +3,7 @@ const express = require('express');
 //models imports
 const Order = require("../../models/Utils/Order.js");
 const Role_Verifier = require("../../controllers/role_verifier.js");
+const Send_Email = require('../../controllers/email_handler.js');
 
 let router = express.Router()
 
@@ -37,12 +38,21 @@ router.post("/",async (req,res)=>{
         try{
             const query = {_id:id};
             const update = { $set: {
-                order_status: 				"completed",
+                order_status: 	"completed",
             }};
             const options = { };
             
-            await Order.updateOne( query, update, options).then((response)=>{return res.status(200).send("success")})
+            await Order.updateOne( query, update, options).then((response)=>{
+                const email_payload = {
+                    email : existing_order?.email_of_creator,
+                    order_id : existing_order?._id
+                }
+                let api = 'api/approved_order_email'
+                Send_Email(api,email_payload)
+                return res.status(200).send("success")
+            })
         }catch(err){
+            console.log(err)
             return res.status(500).send("Could not edit this order, try again in a few minutes");
         }
     }

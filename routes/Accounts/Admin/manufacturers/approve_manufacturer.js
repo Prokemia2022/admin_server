@@ -4,6 +4,7 @@ const express = require('express');
 //models import
 const Manufacturer = require('../../../../models/Manufacturer/Manufacturer.js');
 const Role_Verifier = require("../../../../controllers/role_verifier.js");
+const Send_Email = require('../../../../controllers/email_handler.js');
 
 let router = express.Router()
 
@@ -38,6 +39,13 @@ router.post('/',async (req,res,next)=>{
 				const options = { };
 				
 				await Manufacturer.updateOne( query, update, options).then((response)=>{
+					const email_payload = {
+						email : existing_manufacturer?.email_of_company
+					}
+					let api = 'api/approved_account_email'
+					if (existing_manufacturer?.valid_email_status){
+						Send_Email(api,email_payload)
+					}
 					return res.status(200).send("success")
 				})	
 			}catch(err){

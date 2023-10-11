@@ -42,6 +42,7 @@ router.post('/',async(req,res,next)=>{
 	        }};
 	        const options = { };
 	        
+			// console.log(token)
 	        await Admin.updateOne( query, update, options).then((response)=>{
 				return res.status(200).send(token)
 			})

@@ -3,6 +3,7 @@ const express = require("express");
 //models import
 const Sales = require('../../../../models/Sales/SalesPerson.js');
 const Role_Verifier = require("../../../../controllers/role_verifier.js");
+const Send_Email = require("../../../../controllers/email_handler.js");
 
 const router = express.Router();
 
@@ -36,7 +37,16 @@ router.post('/',async(req,res)=>{
 				}};
 				const options = { };
 				
-				await Sales.updateOne( query, update, options).then((response)=>{return res.status(200).send("success")})	
+				await Sales.updateOne( query, update, options).then((response)=>{
+					const email_payload = {
+						email : existing_salesperson?.email_of_salesperson
+					}
+					let api = 'api/approved_account_email'
+					if (existing_salesperson?.valid_email_status){
+						Send_Email(api,email_payload)
+					}
+					return res.status(200).send("success")
+				})	
 			}catch(err){
 			console.log(err)
 			return res.status(500).send("could not verify the profile at the moment");
