@@ -6,7 +6,7 @@ db.connect()
 const app = express()
 app.use(express.json())
 
-let origins = ['http://localhost:3000','https://admin.prokemia.com/','https://admin-frontend-8a5l9iq7b-prokemia2022.vercel.app/'];
+let origins = ['http://localhost:3000','https://admin.prokemia.com','https://admin-frontend-8a5l9iq7b-prokemia2022.vercel.app/'];
 app.use(cors({credentials:true, origin: origins}));
 //imports
 
