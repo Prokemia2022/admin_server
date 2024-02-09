@@ -6,12 +6,8 @@ db.connect()
 const app = express()
 app.use(express.json())
 
-let origins = ['https://prokemia-admin-web.vercel.app',
-				'https://prokemia-admin-web-musembi77.vercel.app',
-				'http://localhost:3000',
-				'https://admin-frontend-pi.vercel.app',
-				'https://admin.prokemia.com/'];
-app.use(cors({credentials:true, origin: '*'}));
+let origins = ['http://localhost:3000','https://admin.prokemia.com/'];
+app.use(cors({credentials:true, origin: origins}));
 //imports
 
 const notifications = require('./routes/control/notifications.js')
