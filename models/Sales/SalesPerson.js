@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const SalesPersonSchema = new mongoose.Schema({
-//account_information - about the user
+	//account_information - about the user
 	first_name:			{type: String},
 	last_name:			{type: String},
 	gender:				{type: String},
@@ -36,6 +36,7 @@ const SalesPersonSchema = new mongoose.Schema({
 	verification_status:		{ type: Boolean},
 	suspension_status:  { type: Boolean},
 	//date of joining
+	account_type:		{type: String},
 	joined_in:			{ type: Date,default: Date.now},
 },{timestamps:true})
 

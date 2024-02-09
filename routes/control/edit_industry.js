@@ -38,6 +38,7 @@ router.post("/",async (req,res)=>{
                 cover_image: 	    payload.cover_image,
                 description:        payload.description,
                 verification_status: 			payload.verification_status,
+                publish_status:				payload.publish_status
             }};
             const options = { };
             

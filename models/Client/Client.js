@@ -1,11 +1,12 @@
 const mongoose = require("mongoose");
 
 const ClientSchema = new mongoose.Schema({
-//account_information - about the user
+	//account_information - about the user
 	first_name:			{type: String},
 	last_name:			{type: String},
 	gender:				{type: String},
-	profile_photo_url: 			{ type:String},
+	profile_photo_url: 	{type:String},
+	account_type:		{type: String},
 	//company user information - tells us of the company infomation
 	email_of_company:	{type: String,unique:true}, //email of salesperson in the company
 	mobile_of_company:	{type: String},
